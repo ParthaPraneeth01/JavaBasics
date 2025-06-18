@@ -122,15 +122,17 @@ public class PaymentTransfer
 	    while(true){
 	        System.out.println("\n---Menu---\n1.BALANCE \n2.DEPOSIT \n3.WITHDRAW \n4.VIEW TRANSACTIONS \n5.TRANSFERMONEY \n6.LOGOUT");
 	        int choice = sc.nextInt();
-	        System.out.println("\n");
+	        sc.nextLine();
 	        switch(choice){
 	            case(1):{
 	                System.out.println("THe User has Balance ₹"+currentuser.balance);   
+	                break;
 	            }
 	            case(2):{
 	                System.out.println("EnterTHe amount to deposit ₹");
 	                double amount=sc.nextDouble();
 	                currentuser.deposit(amount);
+	                break;
 	            }
 	            case(3):{
 	                System.out.println("Enter amount need to withdraw ₹");
@@ -138,10 +140,14 @@ public class PaymentTransfer
 	                if(!currentuser.withdraw(amount)){
 	                    System.out.println("insufficient funds");
 	                }
+	                break;
 	            }
-	            case(4):currentuser.printTransactions();
+	            case(4):{
+	                currentuser.printTransactions();
+	                break;
+	            }
 	            case(5):{
-	                System.out.println("Enter the recipant username:");
+	                System.out.print("Enter the recipant username:");
 	                String touser=sc.nextLine();
 	                if(!users.containsKey(touser)){
 	                    System.out.println("username not exists");
@@ -156,7 +162,7 @@ public class PaymentTransfer
 	                if(currentuser.sendTransfer(users.get(touser),amount)){
 	                     System.out.println("Transaction Successful");
 	                }
-	               
+	                break;
 	            }
 	            case(6):{
 	                System.out.println("LOGOUT Successful");
@@ -164,6 +170,7 @@ public class PaymentTransfer
 	            }
 	            default:{
 	                System.out.println("Invalid Choice");
+	                break;
 	            }
 	        }
 	    }
